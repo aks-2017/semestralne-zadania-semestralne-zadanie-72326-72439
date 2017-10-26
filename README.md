@@ -13,7 +13,7 @@ Switche v tejto topológii predstavujú “bottleneck” pomocou nastavenia RTT 
 Testované video zdroje uložené na serveri majú variabilitu rozlíšení a dátového toku. Testovacie webové stránky sa rozlišujú množstvom a pomerom textu a multimediálneho obsahu.
 
 
-Obr. 1 - Topológia testovacej siete
+![Obr. 1 - Topológia testovacej siete](/master/parameters.png?raw=true)
 
 Niektorí klienti budú prehliadať webové stráky pomocou nástroja “Selenium”, ktorý slúži na automatizovanie prehliadania webových stránok. Iní klienti budú spotrebovávať video stream pomocou klienta “GPAC”, ktorý poskytuje vysoko konfigurovateľnú open-source platformu pre prehrávanie multimediálneho obsahu.
 
@@ -24,7 +24,7 @@ Premenné ktoré sa budú meniť sú: bandwith, RTT a veľkosť video buffera kl
 Testovacie paramtetre, ktoré použili autori článku sú zobrazené na Obr. 2.
 
 
-Obr. 2 - Parametre pre experiment.
+![Obr. 2 - Parametre pre experiment.](/master/topology.png?raw=true)
 
 Naším cieľom bude vyhodnocovať výsledky na základe týchto zmien, a teda rýchlosti načítania stránok, videí a veľkosti front klientov, ktorý čakajú.
 
