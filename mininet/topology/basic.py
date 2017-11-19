@@ -6,6 +6,9 @@ from mininet.net import Mininet
 from mininet.topo import Topo
 from mininet.node import RemoteController, OVSSwitch
 
+#parameters
+linkopts = dict(bw=10, delay='5ms', loss=10, max_queue_size=1000, use_htb=True)
+
 class SizingBuffersTopo( Topo ):
     "Minimal topology with a single switch and two hosts"
 
@@ -35,7 +38,7 @@ class SizingBuffersTopo( Topo ):
         self.addLink( s1, h6 )
         self.addLink( s1, h7 )
         self.addLink( s1, h8 )
-        self.addLink( s1, s2 )
+        self.addLink( s1, s2, **linkopts )
         self.addLink( s2, server )
 
 
