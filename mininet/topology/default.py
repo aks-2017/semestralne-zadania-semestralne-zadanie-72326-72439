@@ -7,6 +7,7 @@ from mininet.topo import Topo
 from mininet.node import RemoteController, OVSSwitch
 from mininet.link import TCLink
 from mininet.node import CPULimitedHost
+from mininet.node import Host
 
 #parameters
 linkopts = dict(bw=6, delay='40ms', max_queue_size=240)
@@ -17,7 +18,8 @@ class SizingBuffersTopo( Topo ):
 
     def build( self ):
         # Create hosts.
-        h1 = self.addHost( 'h1' )
+
+	h1 = self.addHost( 'h1' )
         h2 = self.addHost( 'h2' )
         h3 = self.addHost( 'h3' )
         h4 = self.addHost( 'h4' )
@@ -39,10 +41,12 @@ class SizingBuffersTopo( Topo ):
         l6 = self.addLink( s1, h6 )
         l9 = self.addLink( s1, s2, **linkopts )
         l10 = self.addLink( s2, server )
+
         
 def runTopo():
     "Bootstrap a Mininet network using the Minimal Topology"
  
+
     # Create an instance of our topology
     topo = SizingBuffersTopo()
  
@@ -53,6 +57,14 @@ def runTopo():
  
     # Actually start the network
     net.start()
+
+    server = net.get('server')
+    server.cmd("sudo ufw allow 80")
+    server.cmd("sudo service apache2 restart")
+    i = 0
+    for h in net.hosts:
+	i += 1
+    	h.cmd("~/GPAC_test_code/DASH_MP4Client_script.sh ~/logs " + str(i) + " 0 100 RAW &")
     
     # Drop the user in to a CLI so user can run commands.
     CLI( net )

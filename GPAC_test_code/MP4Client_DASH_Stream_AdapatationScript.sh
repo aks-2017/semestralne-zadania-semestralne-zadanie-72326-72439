@@ -59,7 +59,7 @@ do
     # ****** BEGIN HERE ******
 
     # extract the adaptation, a number of clients, from the Chrome console log
-    awk -v a="${clientCounter}" -v b=${outputFolder} -v c="$streamSegNum" -v clip=${folderName} -f ${awk_script_location}/MP4Client_client_output.awk ./$scenFolder/$outputFolderName/$outputFile > ./$scenFolder/$outputFolderName/${file_format}${clientCounter}.txt
+    awk -v a="${clientCounter}" -v b=${outputFolder} -v c="$streamSegNum" -v clip=${folderName} -f ~/GPAC_test_code/${awk_script_location}/MP4Client_client_output.awk $scenFolder/$outputFolderName/$outputFile > $scenFolder/$outputFolderName/${file_format}${clientCounter}.txt
 
     echo "finished"
 

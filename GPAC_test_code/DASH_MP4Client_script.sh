@@ -112,8 +112,7 @@ fi
 
 # list of urls - each url is an adaptive DASH stream
 urlsDASH=(
-	http://10.10.10.1/VOD/bbb_enc_10min_x264_dash.mpd
-	http://localhost/VOD/bbb_enc_10min_x264_dash.mpd
+	http://10.0.0.7/VOD/bbb_enc_10min_x264_dash.mpd
 	)
 
 # just a check to make sure the correct url is being requested
@@ -145,19 +144,19 @@ mv $outputFolder/ourGpacrc_temp $outputFolder/ourGpacrc
 
 # output trace file
 outputFile=${folderDASH[$urlCounter]}_clientID$((clientCounter)).txt
-
-echo "MP4Client -exit -cfg $outputFolder/ourGpacrc -lf $outputFolder/$outputFile -logs dash:network@debug ${urlsDASH[$urlCounter]}"
+#-cfg $outputFolder/ourGpacrc
+echo "MP4Client -exit -lf ~/logs/$outputFile -logs dash:network@debug ${urlsDASH[$urlCounter]}"
 
 # run our GPAC client script
-gnome-terminal -e "MP4Client -exit -cfg $outputFolder/ourGpacrc -lf $outputFolder/$outputFile -logs dash:network@debug ${urlsDASH[$urlCounter]}"
+MP4Client -exit -lf ~/logs/$outputFile -logs dash:network@debug ${urlsDASH[$urlCounter]}
 
 # RAW does not seem to stop in GPAC, so stop the player after the correct number of segments
 # sleep for the number of segments plus 15, times the segment duration (pass this in if needed)
-sleep $[$[$streamSegNum+15]*4]
-killall -9 MP4Client
+#sleep $[$[$streamSegNum+15]*4]
+#killall -9 MP4Client
 
 # create the columned trace file
-./MP4Client_DASH_Stream_AdapatationScript.sh $outputFolderName $outputFile $streamSegNum ${folderDASH[$urlCounter]} $((clientCounter)) ${scenFolder}
+#~/GPAC_test_code/MP4Client_DASH_Stream_AdapatationScript.sh $outputFolderName $outputFile $streamSegNum ${folderDASH[$urlCounter]} $((clientCounter)) ${scenFolder}
 
 
 echo "Done"
